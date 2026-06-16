@@ -1,0 +1,66 @@
+---
+const features = [
+    {
+        icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>`,
+        title: "Otthonos belter",
+        description: "Teljes mertekben felszerelt konyha, kenyelmes haloszoba es hangulatos nappali."
+    },
+    {
+        icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>`,
+        title: "Termeszet kozelben",
+        description: "Turazasi lehetosegek, szolok es a Balaton csak par percre."
+    },
+    {
+        icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.858 15.355-5.858 21.213 0" /></svg>`,
+        title: "Ingyenes WiFi",
+        description: "Nagysebessegu internet a teljes epuletben es a kertben."
+    },
+    {
+        icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>`,
+        title: "Napsutos terasz",
+        description: "Privat terasz panoramas kilatassal a domboldalra."
+    },
+    {
+        icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>`,
+        title: "Ingyenes parkolas",
+        description: "Biztonsagos, zart parkolohelyek kozvetlenul az epulet mellett."
+    },
+    {
+        icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>`,
+        title: "Haziallat barat",
+        description: "Kedvenceidet is szivesen latjuk nalunk."
+    }
+];
+---
+
+<section id="features" class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-white">
+
+    <div class="max-w-6xl mx-auto">
+
+        <div class="text-center mb-12 sm:mb-16 animate-on-scroll fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 text-stone-900">
+                Szolgaltatasok
+            </h2>
+            <p class="text-base sm:text-lg text-stone-600 max-w-2xl mx-auto">
+                Minden, amire szukseged lehet egy tokeletes piheneshez.
+            </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {features.map((feature, i) => (
+                <div
+                    class="animate-on-scroll scale-in group p-5 sm:p-6 rounded-2xl border border-stone-200 hover:border-amber-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                    style={`animation-delay: ${i * 100}ms;`}
+                >
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center text-amber-700 mb-4 group-hover:bg-amber-100 transition-colors duration-300">
+                        <Fragment set:html={feature.icon} />
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-stone-900">{feature.title}</h3>
+                    <p class="text-stone-600 text-sm sm:text-base leading-relaxed">{feature.description}</p>
+                </div>
+            ))}
+        </div>
+
+    </div>
+
+</section>

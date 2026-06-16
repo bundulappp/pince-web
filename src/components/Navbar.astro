@@ -1,15 +1,66 @@
-<nav class="fixed top-0 w-full bg-white/80 backdrop-blur z-50 shadow-sm">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+<nav id="navbar" class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 shadow-sm transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
 
-        <a href="#" class="font-bold text-xl">
+        <a href="#" class="font-bold text-lg sm:text-xl tracking-tight text-stone-900">
             Pince Apartman
         </a>
 
-        <ul class="flex gap-6">
-            <li><a href="#about">Rólunk</a></li>
-            <li><a href="#gallery">Galéria</a></li>
-            <li><a href="#contact">Kapcsolat</a></li>
+        <button id="menu-toggle" class="sm:hidden p-2 rounded-lg hover:bg-stone-100 transition-colors" aria-label="Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+        <ul class="hidden sm:flex gap-6">
+            <li><a href="#about" class="text-stone-600 hover:text-stone-900 transition-colors duration-200">Rolunk</a></li>
+            <li><a href="#features" class="text-stone-600 hover:text-stone-900 transition-colors duration-200">Szolgaltatasok</a></li>
+            <li><a href="#gallery" class="text-stone-600 hover:text-stone-900 transition-colors duration-200">Galeria</a></li>
+            <li><a href="#contact" class="text-stone-600 hover:text-stone-900 transition-colors duration-200">Kapcsolat</a></li>
         </ul>
 
     </div>
+
+    <div id="mobile-menu" class="sm:hidden hidden overflow-hidden transition-all duration-300 max-h-0">
+        <ul class="px-4 pb-4 space-y-2">
+            <li><a href="#about" class="block py-2 px-3 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-colors">Rolunk</a></li>
+            <li><a href="#features" class="block py-2 px-3 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-colors">Szolgaltatasok</a></li>
+            <li><a href="#gallery" class="block py-2 px-3 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-colors">Galeria</a></li>
+            <li><a href="#contact" class="block py-2 px-3 rounded-lg text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-colors">Kapcsolat</a></li>
+        </ul>
+    </div>
 </nav>
+
+<script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+
+    toggle?.addEventListener('click', () => {
+        menu?.classList.toggle('hidden');
+        if (!menu?.classList.contains('hidden')) {
+            menu.style.maxHeight = menu.scrollHeight + 'px';
+        } else {
+            menu!.style.maxHeight = '0';
+        }
+    });
+
+    menu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.add('hidden');
+            menu.style.maxHeight = '0';
+        });
+    });
+
+    let lastScroll = 0;
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        const current = window.scrollY;
+        if (current > 100) {
+            navbar?.classList.add('shadow-md');
+            navbar?.classList.remove('shadow-sm');
+        } else {
+            navbar?.classList.remove('shadow-md');
+            navbar?.classList.add('shadow-sm');
+        }
+        lastScroll = current;
+    });
+</script>

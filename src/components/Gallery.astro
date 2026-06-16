@@ -1,33 +1,71 @@
-<section
-    id="gallery"
-    class="py-24 px-6"
->
+<section id="gallery" class="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
 
     <div class="max-w-6xl mx-auto">
 
-        <h2 class="text-4xl font-bold mb-12">
-            Galéria
-        </h2>
+        <div class="text-center mb-12 sm:mb-16 animate-on-scroll fade-up">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 text-stone-900">
+                Galeria
+            </h2>
+            <p class="text-base sm:text-lg text-stone-600">
+                Pillants be az apartmanba.
+            </p>
+        </div>
 
-        <div class="grid md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
 
-            <img
-                src="https://picsum.photos/600/400?1"
-                alt=""
-                class="rounded-xl"
-            />
+            <div class="animate-on-scroll scale-in sm:col-span-2 lg:col-span-2 lg:row-span-2">
+                <img
+                    src="https://picsum.photos/800/600?random=1"
+                    alt="Apartman belso"
+                    class="rounded-2xl w-full h-full object-cover aspect-[4/3] lg:aspect-auto hover:scale-[1.02] transition-transform duration-500"
+                    loading="lazy"
+                />
+            </div>
 
-            <img
-                src="https://picsum.photos/600/400?2"
-                alt=""
-                class="rounded-xl"
-            />
+            <div class="animate-on-scroll scale-in" style="animation-delay: 100ms;">
+                <img
+                    src="https://picsum.photos/400/300?random=2"
+                    alt="Konyha"
+                    class="rounded-2xl w-full object-cover aspect-[4/3] hover:scale-[1.02] transition-transform duration-500"
+                    loading="lazy"
+                />
+            </div>
 
-            <img
-                src="https://picsum.photos/600/400?3"
-                alt=""
-                class="rounded-xl"
-            />
+            <div class="animate-on-scroll scale-in" style="animation-delay: 200ms;">
+                <img
+                    src="https://picsum.photos/400/300?random=3"
+                    alt="Haloszoba"
+                    class="rounded-2xl w-full object-cover aspect-[4/3] hover:scale-[1.02] transition-transform duration-500"
+                    loading="lazy"
+                />
+            </div>
+
+            <div class="animate-on-scroll scale-in" style="animation-delay: 300ms;">
+                <img
+                    src="https://picsum.photos/400/300?random=4"
+                    alt="Terasz"
+                    class="rounded-2xl w-full object-cover aspect-[4/3] hover:scale-[1.02] transition-transform duration-500"
+                    loading="lazy"
+                />
+            </div>
+
+            <div class="animate-on-scroll scale-in" style="animation-delay: 400ms;">
+                <img
+                    src="https://picsum.photos/400/300?random=5"
+                    alt="Kert"
+                    class="rounded-2xl w-full object-cover aspect-[4/3] hover:scale-[1.02] transition-transform duration-500"
+                    loading="lazy"
+                />
+            </div>
+
+            <div class="animate-on-scroll scale-in" style="animation-delay: 500ms;">
+                <img
+                    src="https://picsum.photos/400/300?random=6"
+                    alt="Kornyezet"
+                    class="rounded-2xl w-full object-cover aspect-[4/3] hover:scale-[1.02] transition-transform duration-500"
+                    loading="lazy"
+                />
+            </div>
 
         </div>
 
