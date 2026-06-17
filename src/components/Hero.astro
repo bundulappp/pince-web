@@ -1,50 +1,86 @@
-<section class="relative h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 overflow-hidden">
+---
+import { Image } from "astro:assets";
+import heroImage from "../assets/house1.jpg";
+---
 
-    <div class="absolute inset-0 bg-gradient-to-br from-stone-100 via-amber-50 to-stone-200 -z-10"></div>
-
-    <div class="absolute inset-0 -z-5 opacity-20">
-        <div class="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-amber-200 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-stone-300 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+<section
+  class="relative h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 overflow-hidden"
+>
+  <div class="absolute inset-0 -z-10">
+    <Image
+      src={heroImage}
+      alt="Pince Apartman"
+      class="w-full h-full object-cover"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-amber-900/50 via-stone-800/30 to-stone-900/60"
+    >
     </div>
+  </div>
 
-    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-4 sm:mb-6 text-stone-900 hero-title opacity-0">
-        Pince Apartman
-    </h1>
+  <h1
+    class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-4 sm:mb-6 text-white hero-title opacity-0"
+  >
+    Pince Apartman
+  </h1>
 
-    <p class="text-base sm:text-lg md:text-xl max-w-xs sm:max-w-lg md:max-w-2xl text-stone-600 hero-subtitle opacity-0">
-        Pihenes, nyugalom es termeszet egy helyen.
-    </p>
+  <p
+    class="text-base sm:text-lg md:text-xl max-w-xs sm:max-w-lg md:max-w-2xl text-stone-200 hero-subtitle opacity-0"
+  >
+    Pihenes, nyugalom es termeszet egy helyen.
+  </p>
 
-    <a href="#about" class="mt-8 sm:mt-12 inline-flex items-center gap-2 px-6 py-3 bg-stone-900 text-white rounded-full text-sm sm:text-base font-medium hover:bg-stone-700 transition-all duration-300 hover:scale-105 hero-cta opacity-0">
-        Fedezd fel
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-    </a>
+  <a
+    href="#about"
+    class="mt-8 sm:mt-12 inline-flex items-center gap-2 px-6 py-3 bg-white text-stone-900 rounded-full text-sm sm:text-base font-medium hover:bg-stone-100 transition-all duration-300 hover:scale-105 hero-cta opacity-0"
+  >
+    Fedezd fel
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </a>
 
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-    </div>
-
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg
+      class="w-5 h-5 sm:w-6 sm:h-6 text-white/60"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
 </section>
 
 <style>
-    @keyframes hero-fade-in {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-    .hero-title {
-        animation: hero-fade-in 1s ease 0.2s forwards;
-    }
+  .hero-title {
+    animation: hero-fade-in 1s ease 0.2s forwards;
+  }
 
-    .hero-subtitle {
-        animation: hero-fade-in 1s ease 0.5s forwards;
-    }
+  .hero-subtitle {
+    animation: hero-fade-in 1s ease 0.5s forwards;
+  }
 
-    .hero-cta {
-        animation: hero-fade-in 1s ease 0.8s forwards;
-    }
+  .hero-cta {
+    animation: hero-fade-in 1s ease 0.8s forwards;
+  }
 </style>
