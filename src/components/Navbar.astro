@@ -9,9 +9,40 @@
       Pince Apartman
     </a>
 
+    <div
+      id="desktop-nav"
+      class="hidden md:flex gap-4 lg:gap-8 w-full justify-end relative"
+    >
+      <div
+        id="nav-pill"
+        class="absolute rounded-full transition-all duration-300 ease-out opacity-0 pointer-events-none"
+      >
+      </div>
+      <a
+        href="#about"
+        class="navbar-link nav-item relative z-10 px-4 py-2 rounded-full text-white/80 transition-colors duration-200"
+        >Rolunk</a
+      >
+      <a
+        href="#features"
+        class="navbar-link nav-item relative z-10 px-4 py-2 rounded-full text-white/80 transition-colors duration-200"
+        >Szolgaltatasok</a
+      >
+      <a
+        href="#gallery"
+        class="navbar-link nav-item relative z-10 px-4 py-2 rounded-full text-white/80 transition-colors duration-200"
+        >Galeria</a
+      >
+      <a
+        href="#contact"
+        class="navbar-link nav-item relative z-10 px-4 py-2 rounded-full text-white/80 transition-colors duration-200"
+        >Kapcsolat</a
+      >
+    </div>
+
     <button
       id="menu-toggle"
-      class="sm:hidden p-2 rounded-lg hover:bg-white/10 transition-colors navbar-link"
+      class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors navbar-link"
       aria-label="Menu"
     >
       <svg
@@ -28,69 +59,38 @@
           d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
-
-    <ul class="hidden sm:flex gap-6">
-      <li>
-        <a
-          href="#about"
-          class="navbar-link text-white/80 hover:text-white transition-colors duration-200"
-          >Rolunk</a
-        >
-      </li>
-      <li>
-        <a
-          href="#features"
-          class="navbar-link text-white/80 hover:text-white transition-colors duration-200"
-          >Szolgaltatasok</a
-        >
-      </li>
-      <li>
-        <a
-          href="#gallery"
-          class="navbar-link text-white/80 hover:text-white transition-colors duration-200"
-          >Galeria</a
-        >
-      </li>
-      <li>
-        <a
-          href="#contact"
-          class="navbar-link text-white/80 hover:text-white transition-colors duration-200"
-          >Kapcsolat</a
-        >
-      </li>
-    </ul>
   </div>
 
   <div
     id="mobile-menu"
-    class="sm:hidden hidden overflow-hidden transition-all duration-300 max-h-0"
+    class="md:hidden hidden overflow-hidden transition-all duration-300 max-h-0"
   >
     <ul class="px-4 pb-4 space-y-2">
       <li>
         <a
           href="#about"
-          class="block py-2 px-3 rounded-lg navbar-link text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+          class="block py-2 px-4 rounded-full navbar-link text-white/80 hover:bg-stone-800/70 hover:text-white transition-all"
           >Rolunk</a
         >
       </li>
       <li>
         <a
           href="#features"
-          class="block py-2 px-3 rounded-lg navbar-link text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+          class="block py-2 px-4 rounded-full navbar-link text-white/80 hover:bg-stone-800/70 hover:text-white transition-all"
           >Szolgaltatasok</a
         >
       </li>
       <li>
         <a
           href="#gallery"
-          class="block py-2 px-3 rounded-lg navbar-link text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+          class="block py-2 px-4 rounded-full navbar-link text-white/80 hover:bg-stone-800/70 hover:text-white transition-all"
           >Galeria</a
         >
       </li>
       <li>
         <a
           href="#contact"
-          class="block py-2 px-3 rounded-lg navbar-link text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+          class="block py-2 px-4 rounded-full navbar-link text-white/80 hover:bg-stone-800/70 hover:text-white transition-all"
           >Kapcsolat</a
         >
       </li>
@@ -120,20 +120,30 @@
 
   const navbar = document.getElementById("navbar");
   const links = document.querySelectorAll(".navbar-link");
+  const desktopNav = document.getElementById("desktop-nav");
+  const pill = document.getElementById("nav-pill");
+  const navItems = document.querySelectorAll(".nav-item");
+
+  let isScrolled = false;
 
   function updateNavbar() {
     const scrolled = window.scrollY > 50;
+    isScrolled = scrolled;
     if (scrolled) {
-      navbar?.classList.add("bg-white", "shadow-md", "backdrop-blur-md");
+      navbar?.classList.add("bg-amber-50/95", "shadow-md", "backdrop-blur-md");
       navbar?.classList.remove("py-4", "sm:py-5");
       links.forEach((link) => {
         link.classList.remove("text-white", "text-white/80");
-        link.classList.add("text-stone-700");
+        link.classList.add("text-stone-900");
       });
     } else {
-      navbar?.classList.remove("bg-white", "shadow-md", "backdrop-blur-md");
+      navbar?.classList.remove(
+        "bg-amber-50/95",
+        "shadow-md",
+        "backdrop-blur-md",
+      );
       links.forEach((link) => {
-        link.classList.remove("text-stone-700");
+        link.classList.remove("text-stone-900");
         link.classList.add("text-white", "text-white/80");
       });
     }
@@ -141,4 +151,38 @@
 
   window.addEventListener("scroll", updateNavbar);
   updateNavbar();
+
+  // Animated pill navigation
+  function movePill(target: HTMLElement) {
+    if (!pill || !desktopNav) return;
+    const navRect = desktopNav.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    pill.style.left = `${targetRect.left - navRect.left}px`;
+    pill.style.top = `${targetRect.top - navRect.top}px`;
+    pill.style.width = `${targetRect.width}px`;
+    pill.style.height = `${targetRect.height}px`;
+    pill.style.opacity = "1";
+
+    if (isScrolled) {
+      pill.style.backgroundColor = "rgb(41 37 36 / 0.8)"; // stone-800
+      (target as HTMLElement).style.color = "#fffbeb"; // amber-50
+    } else {
+      pill.style.backgroundColor = "rgba(255,255,255,0.2)";
+      (target as HTMLElement).style.color = "#ffffff";
+    }
+  }
+
+  navItems.forEach((item) => {
+    item.addEventListener("mouseenter", () => movePill(item as HTMLElement));
+    item.addEventListener("mouseleave", () => {
+      (item as HTMLElement).style.color = "";
+    });
+  });
+
+  desktopNav?.addEventListener("mouseleave", () => {
+    if (pill) pill.style.opacity = "0";
+    navItems.forEach((item) => {
+      (item as HTMLElement).style.color = "";
+    });
+  });
 </script>
