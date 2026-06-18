@@ -1,0 +1,40 @@
+<a
+  href="#contact"
+  class="mobile-sticky-cta"
+  id="mobile-cta"
+  aria-label="Foglalj most"
+>
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+    ></path>
+  </svg>
+</a>
+
+<script>
+  const mobileCta = document.getElementById("mobile-cta");
+  let ctaVisible = false;
+
+  window.addEventListener("scroll", () => {
+    const shouldShow = window.scrollY > window.innerHeight * 0.8;
+    if (shouldShow && !ctaVisible) {
+      mobileCta?.style.setProperty("transform", "scale(1)");
+      mobileCta?.style.setProperty("opacity", "1");
+      ctaVisible = true;
+    } else if (!shouldShow && ctaVisible) {
+      mobileCta?.style.setProperty("transform", "scale(0)");
+      mobileCta?.style.setProperty("opacity", "0");
+      ctaVisible = false;
+    }
+  });
+
+  if (mobileCta) {
+    mobileCta.style.transform = "scale(0)";
+    mobileCta.style.opacity = "0";
+    mobileCta.style.transition =
+      "transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease";
+  }
+</script>

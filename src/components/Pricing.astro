@@ -1,0 +1,159 @@
+---
+const seasons = [
+  {
+    name: "Főszezon",
+    period: "Június – Augusztus",
+    price: "35 000",
+    note: "Ft / éj",
+    highlight: true,
+    features: ["Min. 3 éjszaka", "Reggeli kérhető", "Kerti grill használat"],
+  },
+  {
+    name: "Előszezon",
+    period: "Április – Május",
+    price: "25 000",
+    note: "Ft / éj",
+    highlight: false,
+    features: ["Min. 2 éjszaka", "Csendes időszak", "Túrázáshoz ideális"],
+  },
+  {
+    name: "Utószezon",
+    period: "Szeptember – Október",
+    price: "25 000",
+    note: "Ft / éj",
+    highlight: false,
+    features: ["Min. 2 éjszaka", "Szüreti programok", "Őszi színek"],
+  },
+  {
+    name: "Téli időszak",
+    period: "November – Március",
+    price: "18 000",
+    note: "Ft / éj",
+    highlight: false,
+    features: ["Min. 2 éjszaka", "Téli nyugalom", "Borkóstoló a közelben"],
+  },
+];
+---
+
+<section id="pricing" class="py-16 sm:py-20 md:py-24 px-4 sm:px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 sm:mb-16 animate-on-scroll fade-up">
+      <p
+        class="text-sm tracking-[0.2em] uppercase text-amber-700 mb-2 font-sans"
+      >
+        Árak
+      </p>
+      <h2
+        class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-stone-900"
+      >
+        Árak és időszakok
+      </h2>
+      <p class="text-base sm:text-lg text-stone-600 max-w-2xl mx-auto">
+        Válaszd ki a neked megfelelő időpontot.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      {
+        seasons.map((season, i) => (
+          <div
+            class:list={[
+              "animate-on-scroll scale-in rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg",
+              season.highlight
+                ? "bg-stone-900 text-white border-2 border-amber-600 relative"
+                : "bg-white border border-stone-200 hover:border-amber-200",
+            ]}
+            style={`animation-delay: ${i * 100}ms;`}
+          >
+            {season.highlight && (
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-amber-600 text-white text-xs font-medium rounded-full font-sans">
+                Népszerű
+              </div>
+            )}
+            <h3
+              class:list={[
+                "text-xl font-bold mb-1",
+                season.highlight ? "text-white" : "text-stone-900",
+              ]}
+            >
+              {season.name}
+            </h3>
+            <p
+              class:list={[
+                "text-sm mb-4 font-sans",
+                season.highlight ? "text-stone-300" : "text-stone-500",
+              ]}
+            >
+              {season.period}
+            </p>
+            <div class="mb-4">
+              <span
+                class:list={[
+                  "text-3xl font-bold font-sans",
+                  season.highlight ? "text-amber-400" : "text-amber-700",
+                ]}
+              >
+                {season.price}
+              </span>
+              <span
+                class:list={[
+                  "text-sm ml-1 font-sans",
+                  season.highlight ? "text-stone-400" : "text-stone-500",
+                ]}
+              >
+                {season.note}
+              </span>
+            </div>
+            <ul class="space-y-2 mb-6">
+              {season.features.map((f) => (
+                <li class="flex items-center gap-2 text-sm font-sans">
+                  <svg
+                    class:list={[
+                      "w-4 h-4 shrink-0",
+                      season.highlight ? "text-amber-400" : "text-amber-700",
+                    ]}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span
+                    class={
+                      season.highlight ? "text-stone-300" : "text-stone-600"
+                    }
+                  >
+                    {f}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#contact"
+              class:list={[
+                "block text-center py-2.5 rounded-xl text-sm font-medium transition-all duration-200 font-sans",
+                season.highlight
+                  ? "bg-amber-600 text-white hover:bg-amber-700"
+                  : "bg-stone-100 text-stone-700 hover:bg-amber-50 hover:text-amber-800",
+              ]}
+            >
+              Foglalás
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <p
+      class="text-center text-sm text-stone-500 mt-8 font-sans animate-on-scroll fade-up"
+    >
+      Az árak 2 fő részére értendők. Extra személy: +5 000 Ft/éj. Háziállat:
+      ingyenes.
+    </p>
+  </div>
+</section>

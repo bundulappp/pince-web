@@ -1,0 +1,224 @@
+---
+const testimonials = [
+  {
+    name: "Kovács Anna",
+    date: "2024. június",
+    rating: 5,
+    text: "Csodás hely! A pince hangulata egyedülálló, minden tiszta és modern. A teraszról gyönyörű a kilátás. Mindenképpen visszatérünk!",
+    avatar: "AK",
+  },
+  {
+    name: "Szabó Péter",
+    date: "2024. augusztus",
+    rating: 5,
+    text: "Tökéletes kikapcsolódás volt. A csend és a természet közelsége igazán feltöltött. A házigazda nagyon segítőkész.",
+    avatar: "SP",
+  },
+  {
+    name: "Nagy Eszter",
+    date: "2024. szeptember",
+    rating: 5,
+    text: "A Balaton-felvidék legjobb szállása! Otthonos, hangulatos, és minden adott a pihenéshez. A gyerekeknek is tetszett.",
+    avatar: "NE",
+  },
+  {
+    name: "Thomas Müller",
+    date: "2024. július",
+    rating: 5,
+    text: "A wonderful hidden gem in the Balaton Highlands. The cellar apartment is beautifully renovated. Highly recommended!",
+    avatar: "TM",
+  },
+  {
+    name: "Horváth Gábor",
+    date: "2024. október",
+    rating: 5,
+    text: "Már másodszor voltunk és megint elvarázsolt a hely. A bor és a vidék szépsége páratlan. 10/10!",
+    avatar: "HG",
+  },
+];
+---
+
+<section
+  id="testimonials"
+  class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-stone-100/50"
+>
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 sm:mb-16 animate-on-scroll fade-up">
+      <p
+        class="text-sm tracking-[0.2em] uppercase text-amber-700 mb-2 font-sans"
+      >
+        Vélemények
+      </p>
+      <h2
+        class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-stone-900"
+      >
+        Vendégeink mondták
+      </h2>
+      <p class="text-base sm:text-lg text-stone-600">
+        Olvasd el, mit gondolnak rólunk korábbi vendégeink.
+      </p>
+    </div>
+
+    <div class="relative overflow-hidden" id="testimonial-container">
+      <div class="testimonial-track" id="testimonial-track">
+        {
+          testimonials.map((t, i) => (
+            <div class="testimonial-card" data-testimonial={i}>
+              <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-stone-100 h-full flex flex-col">
+                <div class="flex items-center gap-1 mb-4">
+                  {Array.from({ length: t.rating }).map(() => (
+                    <svg
+                      class="w-5 h-5 text-amber-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p class="text-stone-600 leading-relaxed mb-6 flex-1 italic font-sans">
+                  "{t.text}"
+                </p>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-800 font-semibold text-sm font-sans">
+                    {t.avatar}
+                  </div>
+                  <div>
+                    <p class="font-semibold text-stone-800 text-sm font-sans">
+                      {t.name}
+                    </p>
+                    <p class="text-stone-500 text-xs font-sans">{t.date}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Navigation -->
+      <div class="flex justify-center items-center gap-4 mt-8">
+        <button
+          id="testimonial-prev"
+          class="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-100 transition-colors"
+          aria-label="Előző"
+        >
+          <svg
+            class="w-5 h-5 text-stone-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <div class="flex gap-2" id="testimonial-dots">
+          {
+            testimonials.map((_, i) => (
+              <button
+                class:list={[
+                  "w-2.5 h-2.5 rounded-full transition-colors duration-200",
+                  i === 0 ? "bg-amber-700" : "bg-stone-300",
+                ]}
+                data-tdot={i}
+                aria-label={`Dia ${i + 1}`}
+              />
+            ))
+          }
+        </div>
+        <button
+          id="testimonial-next"
+          class="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-100 transition-colors"
+          aria-label="Következő"
+        >
+          <svg
+            class="w-5 h-5 text-stone-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById("testimonial-track");
+  const prevBtn = document.getElementById("testimonial-prev");
+  const nextBtn = document.getElementById("testimonial-next");
+  const tdots = document.querySelectorAll("[data-tdot]");
+  const totalSlides = document.querySelectorAll("[data-testimonial]").length;
+
+  let currentSlide = 0;
+  let slidesPerView = 1;
+
+  function updateSlidesPerView() {
+    if (window.innerWidth >= 1024) slidesPerView = 3;
+    else if (window.innerWidth >= 768) slidesPerView = 2;
+    else slidesPerView = 1;
+  }
+
+  function maxSlide() {
+    return Math.max(0, totalSlides - slidesPerView);
+  }
+
+  function goToSlide(index: number) {
+    currentSlide = Math.max(0, Math.min(index, maxSlide()));
+    const percentage = currentSlide * (100 / slidesPerView);
+    if (track) track.style.transform = `translateX(-${percentage}%)`;
+    tdots.forEach((dot, i) => {
+      dot.classList.toggle("bg-amber-700", i === currentSlide);
+      dot.classList.toggle("bg-stone-300", i !== currentSlide);
+    });
+  }
+
+  prevBtn?.addEventListener("click", () => goToSlide(currentSlide - 1));
+  nextBtn?.addEventListener("click", () => goToSlide(currentSlide + 1));
+  tdots.forEach((dot, i) => dot.addEventListener("click", () => goToSlide(i)));
+
+  updateSlidesPerView();
+  window.addEventListener("resize", () => {
+    updateSlidesPerView();
+    goToSlide(currentSlide);
+  });
+
+  // Touch swipe
+  let tStartX = 0;
+  track?.addEventListener("touchstart", (e) => {
+    tStartX = e.touches[0].clientX;
+  });
+  track?.addEventListener("touchend", (e) => {
+    const diff = tStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) goToSlide(currentSlide + 1);
+      else goToSlide(currentSlide - 1);
+    }
+  });
+
+  // Auto-play
+  let autoplayInterval = setInterval(
+    () => goToSlide(currentSlide + 1 > maxSlide() ? 0 : currentSlide + 1),
+    5000,
+  );
+  const container = document.getElementById("testimonial-container");
+  container?.addEventListener("mouseenter", () =>
+    clearInterval(autoplayInterval),
+  );
+  container?.addEventListener("mouseleave", () => {
+    autoplayInterval = setInterval(
+      () => goToSlide(currentSlide + 1 > maxSlide() ? 0 : currentSlide + 1),
+      5000,
+    );
+  });
+</script>

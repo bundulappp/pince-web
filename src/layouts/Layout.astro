@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-
 const { title = "Pince Apartman" } = Astro.props;
 ---
 
@@ -9,12 +8,24 @@ const { title = "Pince Apartman" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta
+      name="description"
+      content="Pince Apartman – Pihenés, nyugalom és természet a Balaton-felvidék
+szívében."
+    />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content="Pihenés, nyugalom és természet a
+Balaton-felvidék szívében."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>{title}</title>
   </head>
-
   <body class="bg-amber-50 text-stone-800">
     <slot />
-
     <script>
       const observer = new IntersectionObserver(
         (entries) => {
@@ -27,7 +38,6 @@ const { title = "Pince Apartman" } = Astro.props;
         },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
       );
-
       document.querySelectorAll(".animate-on-scroll").forEach((el) => {
         observer.observe(el);
       });

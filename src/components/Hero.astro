@@ -6,41 +6,53 @@ import heroImage from "../assets/house1.jpg";
 <section
   class="relative h-screen flex flex-col justify-center items-center text-center px-4 sm:px-6 overflow-hidden"
 >
-  <div class="absolute inset-0 -z-10">
+  <div class="absolute inset-0 -z-10" id="hero-parallax">
     <Image
       src={heroImage}
       alt="Pince Apartman"
-      class="w-full h-full object-cover"
+      class="w-full h-full object-cover scale-110"
+      loading="eager"
     />
     <div
       class="absolute inset-0 bg-gradient-to-b from-amber-900/50 via-stone-800/30 to-stone-900/60"
     >
     </div>
+    <div
+      class="absolute inset-0 opacity-[0.03]"
+      style='background-image: url(&apos;data:image/svg+xml,%3Csvg width="4" height="4" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="2" cy="2" r="0.5" fill="white"/%3E%3C/svg%3E&apos;); background-size: 4px 4px;'
+    >
+    </div>
   </div>
 
+  <p
+    class="text-sm sm:text-base tracking-[0.3em] uppercase text-amber-200/80 mb-4 hero-subtitle opacity-0 font-sans"
+  >
+    Balaton-felvidék
+  </p>
+
   <h1
-    class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-4 sm:mb-6 text-white hero-title opacity-0"
+    class="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-bold mb-4 sm:mb-6 text-white hero-title opacity-0"
   >
     Pince Apartman
   </h1>
 
   <p
-    class="text-base sm:text-lg md:text-xl max-w-xs sm:max-w-lg md:max-w-2xl text-stone-200 hero-subtitle opacity-0"
+    class="text-base sm:text-lg md:text-xl max-w-xs sm:max-w-lg md:max-w-2xl text-stone-200 hero-subtitle opacity-0 italic"
   >
-    Pihenes, nyugalom es termeszet egy helyen.
+    Pihenés, nyugalom és természet egy helyen.
   </p>
 
   <a
-    href="#about"
-    class="mt-8 sm:mt-12 inline-flex items-center gap-2 px-6 py-3 bg-white text-stone-900 rounded-full text-sm sm:text-base font-medium hover:bg-stone-100 transition-all duration-300 hover:scale-105 hero-cta opacity-0"
+    href="#contact"
+    class="mt-8 sm:mt-12 inline-flex items-center gap-2 px-8 py-3.5 bg-amber-700 text-white rounded-full text-sm sm:text-base font-medium hover:bg-amber-800 transition-all duration-300 hover:scale-105 hero-cta opacity-0 shadow-lg shadow-amber-900/30 font-sans"
   >
-    Fedezd fel
+    Foglalj most!
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="2"
-        d="M19 9l-7 7-7-7"></path>
+        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
     </svg>
   </a>
 
@@ -59,6 +71,28 @@ import heroImage from "../assets/house1.jpg";
     </svg>
   </div>
 </section>
+
+<script>
+  const parallaxEl = document.getElementById("hero-parallax");
+  let ticking = false;
+
+  function updateParallax() {
+    if (!parallaxEl) return;
+    const scrollY = window.scrollY;
+    const heroHeight = window.innerHeight;
+    if (scrollY < heroHeight) {
+      parallaxEl.style.transform = `translateY(${scrollY * 0.4}px)`;
+    }
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  });
+</script>
 
 <style>
   @keyframes hero-fade-in {

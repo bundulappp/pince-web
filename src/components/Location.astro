@@ -1,0 +1,151 @@
+---
+const nearbyPlaces = [
+  { name: "Balaton", distance: "8 km", icon: "water" },
+  { name: "Tihany", distance: "12 km", icon: "landmark" },
+  { name: "Badacsony", distance: "15 km", icon: "mountain" },
+  { name: "Veszprém", distance: "25 km", icon: "city" },
+];
+---
+
+<section
+  id="location"
+  class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-stone-100/50"
+>
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 sm:mb-16 animate-on-scroll fade-up">
+      <p
+        class="text-sm tracking-[0.2em] uppercase text-amber-700 mb-2 font-sans"
+      >
+        Helyszín
+      </p>
+      <h2
+        class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-stone-900"
+      >
+        Hol találsz minket?
+      </h2>
+      <p class="text-base sm:text-lg text-stone-600">
+        A Balaton-felvidék szívében, ideális kiindulópont a környék
+        felfedezéséhez.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+      <!-- Map -->
+      <div
+        class="animate-on-scroll fade-left rounded-2xl overflow-hidden shadow-lg aspect-[4/3]"
+      >
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=17.7%2C46.85%2C17.95%2C47.0&layer=mapnik&marker=46.92%2C17.82"
+          class="w-full h-full border-0"
+          loading="lazy"
+          title="Pince Apartman helye a térképen"></iframe>
+      </div>
+
+      <!-- Nearby -->
+      <div class="animate-on-scroll fade-right">
+        <h3 class="text-2xl font-bold text-stone-900 mb-6">
+          Látnivalók a közelben
+        </h3>
+        <div class="space-y-4">
+          {
+            nearbyPlaces.map((place) => (
+              <div class="flex items-center gap-4 p-4 bg-white rounded-xl border border-stone-100 hover:border-amber-200 transition-colors duration-200">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center text-amber-700 shrink-0">
+                  {place.icon === "water" && (
+                    <svg
+                      class="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                      />
+                    </svg>
+                  )}
+                  {place.icon === "landmark" && (
+                    <svg
+                      class="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      />
+                    </svg>
+                  )}
+                  {place.icon === "mountain" && (
+                    <svg
+                      class="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M4 20l4.5-9 3.5 4 4-8 4 13H4z"
+                      />
+                    </svg>
+                  )}
+                  {place.icon === "city" && (
+                    <svg
+                      class="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+                      />
+                    </svg>
+                  )}
+                </div>
+                <div class="flex-1">
+                  <p class="font-semibold text-stone-800 font-sans">
+                    {place.name}
+                  </p>
+                </div>
+                <span class="text-sm text-amber-700 font-medium font-sans">
+                  {place.distance}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="mt-6 p-4 bg-amber-50 rounded-xl border border-amber-100">
+          <div class="flex items-start gap-3">
+            <svg
+              class="w-5 h-5 text-amber-700 mt-0.5 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <p class="text-sm text-stone-700 font-sans">
+              Budapest: ~1,5 óra autóval. Ingyenes parkolás az épület mellett.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
