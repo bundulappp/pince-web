@@ -181,23 +181,6 @@
 <script>
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
-
-  toggle?.addEventListener("click", () => {
-    menu?.classList.toggle("hidden");
-    if (!menu?.classList.contains("hidden")) {
-      menu.style.maxHeight = menu.scrollHeight + "px";
-    } else {
-      menu!.style.maxHeight = "0";
-    }
-  });
-
-  menu?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      menu.classList.add("hidden");
-      menu.style.maxHeight = "0";
-    });
-  });
-
   const navbar = document.getElementById("navbar");
   const links = document.querySelectorAll(".navbar-link");
   const desktopNav = document.getElementById("desktop-nav");
@@ -208,8 +191,9 @@
 
   function updateNavbar() {
     const scrolled = window.scrollY > 50;
+    const menuOpen = !menu?.classList.contains("hidden");
     isScrolled = scrolled;
-    if (scrolled) {
+    if (scrolled || menuOpen) {
       navbar?.classList.add("bg-amber-50/95", "shadow-md", "backdrop-blur-md");
       navbar?.classList.remove("py-4", "sm:py-5");
       links.forEach((link) => {
@@ -235,6 +219,29 @@
 
   window.addEventListener("scroll", updateNavbar);
   updateNavbar();
+
+  toggle?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+    if (!menu?.classList.contains("hidden")) {
+      menu.style.maxHeight = menu.scrollHeight + "px";
+      navbar?.classList.add("bg-amber-50/95", "shadow-md", "backdrop-blur-md");
+      links.forEach((link) => {
+        link.classList.remove("text-white", "text-white/80");
+        link.classList.add("text-stone-900");
+      });
+    } else {
+      menu!.style.maxHeight = "0";
+      updateNavbar();
+    }
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      menu.style.maxHeight = "0";
+      updateNavbar();
+    });
+  });
 
   // Animated pill navigation
   function movePill(target: HTMLElement) {
